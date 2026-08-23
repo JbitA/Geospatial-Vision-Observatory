@@ -1,0 +1,15 @@
+{
+  "base_channels": 20,
+  "batch_size": 8,
+  "bootstrap_iterations": 1000,
+  "epochs": 14,
+  "label_smoothing": 0.02,
+  "learning_rate": 0.0015,
+  "min_valid_fraction": 0.75,
+  "patch_size": 128,
+  "patience": 4,
+  "seed": 20260824,
+  "stride": 96,
+  "weight_decay": 0.0001,
+  "workers": 0
+}

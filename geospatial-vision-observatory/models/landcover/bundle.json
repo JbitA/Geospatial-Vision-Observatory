@@ -1,0 +1,51 @@
+{
+  "class_names": [
+    "tree_cover",
+    "shrubland",
+    "grassland",
+    "cropland",
+    "built_up",
+    "bare_sparse_vegetation",
+    "snow_ice",
+    "permanent_water",
+    "herbaceous_wetland",
+    "mangroves",
+    "moss_lichen"
+  ],
+  "dataset_signature": "4869766cff98f1f4c8d1091ba598ee3d5a455a7efe7993793854e3b431a597d6",
+  "experiment_signature": "714025888b3e200f6a33bb7cb8b80bf8e8334947df0365e5420e6982959e8854",
+  "files": {
+    "MODEL_CARD.md": {
+      "bytes": 1933,
+      "sha256": "339a605fd11033a9e6774756736d17aafb413cc9b278f856d6312fd7d33813e7"
+    },
+    "classes.json": {
+      "bytes": 386,
+      "sha256": "f4bd0b6851adbcc6afb87fdb0aa523eb6d9037962f339de78a046e61c0bffe4a"
+    },
+    "landcover_multispectral.pt2": {
+      "bytes": 6525639,
+      "sha256": "88c1d1360879f4affb388b26cf9afc6b01433987fc640306bf45101bef337060"
+    },
+    "normalization.json": {
+      "bytes": 455,
+      "sha256": "c9e38928bf71dc969361ecde45564a46d3815c9d9b694cd46316d0dccac87e78"
+    },
+    "training-config.json": {
+      "bytes": 308,
+      "sha256": "f1752e01d597ec44d982cffd7865187b991edfa5bc8675c83b9116489a382d00"
+    }
+  },
+  "input_bands": [
+    "red",
+    "green",
+    "blue",
+    "nir",
+    "swir16",
+    "swir22"
+  ],
+  "model_file": "landcover_multispectral.pt2",
+  "safe_loading": "SHA-256 verify bundle before torch.export.load; no pickle checkpoint required",
+  "schema_version": "1.0",
+  "task": "worldcover_landcover_segmentation"
+}

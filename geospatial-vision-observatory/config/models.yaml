@@ -1,0 +1,27 @@
+schema_version: "1.0"
+flagship:
+  task: worldcover_landcover_segmentation
+  family: efficient-multispectral-unet
+  input_bands: [red, green, blue, nir, swir16, swir22]
+  output_reference: ESA WorldCover 2021 v200
+  classes: 11
+  artifact_format: PyTorch PT2 export archive
+  training_entrypoint: python -m geo_vision.ml.train
+  inference_entrypoint: geospatial-vision-infer
+  integrity: SHA-256 verified bundle
+  deployment_policy: deny-unless-reviewed
+scientific_slices:
+  forestry:
+    primary_classes: [tree_cover, shrubland, grassland]
+    reference_context: Hansen Global Forest Change v1.13 is descriptive/external context, not a temporally aligned training label.
+  urban:
+    primary_classes: [built_up, grassland, tree_cover, permanent_water]
+    interpretation: built-up IoU is reported separately on external urban/coastal AOIs.
+prohibited:
+  - parcel-level-person-or-household-inference
+  - facial-recognition
+  - person-identification
+  - biometric-inference
+  - unvalidated-environmental-compliance-enforcement
+  - automatic-production-promotion
+  - unreviewed-online-learning
