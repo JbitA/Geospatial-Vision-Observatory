@@ -1,0 +1,87 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "geospatial-vision-observatory"
+version = "1.0.0"
+description = "Enterprise-grade geospatial machine vision: Sentinel-2 ingestion, multispectral land-cover training, evaluation, provenance, and secure deployment"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = {text = "Apache-2.0"}
+keywords = ["geospatial", "sentinel-2", "computer-vision", "remote-sensing", "mlops", "security"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3.12",
+  "Operating System :: Microsoft :: Windows",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Scientific/Engineering :: GIS",
+]
+dependencies = [
+  "fastapi==0.141.1",
+  "httpx[socks]==0.28.1",
+  "numpy==2.2.6",
+  "pillow==12.3.0",
+  "prometheus-client==0.22.1",
+  "pydantic==2.11.7",
+  "pydantic-settings==2.10.1",
+  "PyYAML==6.0.2",
+  "starlette==1.3.1",
+  "uvicorn[standard]==0.35.0",
+]
+
+[project.optional-dependencies]
+geo = [
+  "rasterio==1.5.1",
+]
+ml = [
+  "rasterio==1.5.1",
+  "torch==2.13.0",
+]
+dev = [
+  "build==1.5.0",
+  "coverage==7.10.1",
+  "mypy==1.17.0",
+  "pip-audit==2.10.1",
+  "pytest==9.1.1",
+  "ruff==0.12.5",
+]
+
+[project.scripts]
+geospatial-vision-api = "geo_vision.api:run"
+geospatial-vision-worker = "geo_vision.worker:run"
+geospatial-vision-train = "geo_vision.ml.train:main"
+geospatial-vision-infer = "geo_vision.ml.inference:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/geo_vision"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "."]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["src/geo_vision"]
+branch = true
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true
+skip_covered = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "S", "UP"]
+ignore = ["S101", "E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/*.py" = ["S404", "S603", "S607"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unreachable = true

@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software in research, please cite this repository and the upstream datasets listed in the data card."
+title: "Geospatial Vision Observatory"
+type: software
+version: 1.0.0
+license: Apache-2.0
+authors:
+  - name: "Geospatial Vision Observatory contributors"
+abstract: "A reproducible Sentinel-2 multispectral land-cover research platform with spatially isolated evaluation, provenance, secure ingestion, and evidence-backed model release tooling."
+keywords:
+  - geospatial
+  - Sentinel-2
+  - remote sensing
+  - computer vision
+  - land cover
+  - MLOps
