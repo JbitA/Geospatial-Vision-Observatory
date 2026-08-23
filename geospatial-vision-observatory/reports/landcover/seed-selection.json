@@ -1,0 +1,78 @@
+{
+  "candidates": [
+    {
+      "dataset_signature": "e52868571f92350e4eb283977a327a6831ca3b17fdff569df3b0528a5bb237ae",
+      "experiment_signature": "95e1a3cfd85a668f275a0a43c1f9e79731da475be30fe5fa944e5eda6689159f",
+      "macro_iou": 0.26328538431036697,
+      "patch_counts": {
+        "train": 80,
+        "validation": 104
+      },
+      "seed": 20260823,
+      "splits": {
+        "train": [
+          "helsinki_metro",
+          "north_karelia_forest",
+          "turku_coast",
+          "oulu_mixed"
+        ],
+        "validation": [
+          "tampere_growth",
+          "jyvaskyla_validation"
+        ]
+      },
+      "weighted_iou": 0.6813819617928293
+    },
+    {
+      "dataset_signature": "e52868571f92350e4eb283977a327a6831ca3b17fdff569df3b0528a5bb237ae",
+      "experiment_signature": "cb00b39d5f52666c1b7772d838148a11041d95ff14d387b5aef85a2a7149b4a4",
+      "macro_iou": 0.30648399413201816,
+      "patch_counts": {
+        "train": 80,
+        "validation": 104
+      },
+      "seed": 20260824,
+      "splits": {
+        "train": [
+          "helsinki_metro",
+          "north_karelia_forest",
+          "turku_coast",
+          "oulu_mixed"
+        ],
+        "validation": [
+          "tampere_growth",
+          "jyvaskyla_validation"
+        ]
+      },
+      "weighted_iou": 0.7166062454175064
+    },
+    {
+      "dataset_signature": "e52868571f92350e4eb283977a327a6831ca3b17fdff569df3b0528a5bb237ae",
+      "experiment_signature": "2345a9baf30af4e11dcae064c58c586abab453b22e01da7b9d32a07e052ec11d",
+      "macro_iou": 0.3059819243182021,
+      "patch_counts": {
+        "train": 80,
+        "validation": 104
+      },
+      "seed": 20260825,
+      "splits": {
+        "train": [
+          "helsinki_metro",
+          "north_karelia_forest",
+          "turku_coast",
+          "oulu_mixed"
+        ],
+        "validation": [
+          "tampere_growth",
+          "jyvaskyla_validation"
+        ]
+      },
+      "weighted_iou": 0.7291279122619004
+    }
+  ],
+  "external_test_used_for_selection": false,
+  "schema_version": "1.0",
+  "selected_seed": 20260824,
+  "selection_dataset": "validation AOIs only",
+  "selection_rule": "maximum validation macro IoU, then weighted IoU"
+}

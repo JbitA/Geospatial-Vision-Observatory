@@ -1,0 +1,93 @@
+[
+  {
+    "epoch": 1,
+    "learning_rate": 0.0004948225684518071,
+    "training_loss": 2.442234921455383,
+    "validation_macro_iou": 0.1335926643384065,
+    "validation_weighted_iou": 0.3229132593493831
+  },
+  {
+    "epoch": 2,
+    "learning_rate": 0.0012740939792654882,
+    "training_loss": 2.1085764527320863,
+    "validation_macro_iou": 0.2217051158638234,
+    "validation_weighted_iou": 0.5665282841651691
+  },
+  {
+    "epoch": 3,
+    "learning_rate": 0.0014973461312037322,
+    "training_loss": 1.75805903673172,
+    "validation_macro_iou": 0.24722503156534467,
+    "validation_weighted_iou": 0.6645600045646428
+  },
+  {
+    "epoch": 4,
+    "learning_rate": 0.001450686902474129,
+    "training_loss": 1.508736753463745,
+    "validation_macro_iou": 0.2854666557467564,
+    "validation_weighted_iou": 0.7011899176167343
+  },
+  {
+    "epoch": 5,
+    "learning_rate": 0.0013492584669872309,
+    "training_loss": 1.3559401750564575,
+    "validation_macro_iou": 0.2975254614499983,
+    "validation_weighted_iou": 0.7092495578885939
+  },
+  {
+    "epoch": 6,
+    "learning_rate": 0.0012009890145225305,
+    "training_loss": 1.2763874530792236,
+    "validation_macro_iou": 0.2980187481625375,
+    "validation_weighted_iou": 0.7070528519741123
+  },
+  {
+    "epoch": 7,
+    "learning_rate": 0.0010174680796321367,
+    "training_loss": 1.2389416694641113,
+    "validation_macro_iou": 0.3035128363861341,
+    "validation_weighted_iou": 0.7073839845584274
+  },
+  {
+    "epoch": 8,
+    "learning_rate": 0.0008130406415453609,
+    "training_loss": 1.2082597017288208,
+    "validation_macro_iou": 0.2960339919873716,
+    "validation_weighted_iou": 0.7067972584683246
+  },
+  {
+    "epoch": 9,
+    "learning_rate": 0.0006036858437588698,
+    "training_loss": 1.1807552933692933,
+    "validation_macro_iou": 0.30648399413201816,
+    "validation_weighted_iou": 0.7166062454175064
+  },
+  {
+    "epoch": 10,
+    "learning_rate": 0.00040576797859493997,
+    "training_loss": 1.1610176801681518,
+    "validation_macro_iou": 0.3003281611950101,
+    "validation_weighted_iou": 0.7070111175051991
+  },
+  {
+    "epoch": 11,
+    "learning_rate": 0.00023475736646460184,
+    "training_loss": 1.1467776536941527,
+    "validation_macro_iou": 0.2914079180957776,
+    "validation_weighted_iou": 0.6974629964870835
+  },
+  {
+    "epoch": 12,
+    "learning_rate": 0.00010402111276357789,
+    "training_loss": 1.1381262421607972,
+    "validation_macro_iou": 0.2996779418653084,
+    "validation_weighted_iou": 0.7105705032420164
+  },
+  {
+    "epoch": 13,
+    "learning_rate": 2.3778263318870362e-05,
+    "training_loss": 1.1355044364929199,
+    "validation_macro_iou": 0.29932275189486507,
+    "validation_weighted_iou": 0.709239779883837
+  }
+]

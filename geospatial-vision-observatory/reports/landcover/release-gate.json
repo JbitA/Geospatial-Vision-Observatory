@@ -1,0 +1,51 @@
+{
+  "dataset_signature": "4869766cff98f1f4c8d1091ba598ee3d5a455a7efe7993793854e3b431a597d6",
+  "eligible_for_github_showcase": false,
+  "experiment_signature": "714025888b3e200f6a33bb7cb8b80bf8e8334947df0365e5420e6982959e8854",
+  "failures": [
+    "macro_iou=0.2854662754618686 is below required 0.3",
+    "macro_dice=0.3492266660377846 is below required 0.42"
+  ],
+  "important_boundary": "Passing this research showcase gate is not production authorization; production deployment remains deny-by-default and requires independent review.",
+  "integrity_failures": [],
+  "model_sha256": "88c1d1360879f4affb388b26cf9afc6b01433987fc640306bf45101bef337060",
+  "policy": {
+    "dataset_policy": {
+      "cloud_quality_basis": "aoi_scl_obscured_percent",
+      "max_cloud_percent": 15.0,
+      "max_pixels": 768,
+      "minimum_validation_seeds": 3,
+      "temporal_window": [
+        "2021-05-01",
+        "2021-09-30"
+      ]
+    },
+    "notes": [
+      "The 15% data-quality ceiling is evaluated from AOI-scoped Sentinel SCL obscured pixels; scene-wide STAC cloud cover is only a candidate-ranking signal.",
+      "These gates prevent publishing a trivially non-functional model as a successful showcase.",
+      "Thresholds are research-showcase criteria, not claims of operational or regulatory fitness.",
+      "Production use requires independent labels, additional geography/season validation, security review and human scientific approval."
+    ],
+    "research_showcase_gates": {
+      "class_iou_minimum": {
+        "built_up": 0.2,
+        "tree_cover": 0.55
+      },
+      "maximum": {
+        "ece": 0.25
+      },
+      "minimum": {
+        "macro_dice": 0.42,
+        "macro_iou": 0.3,
+        "weighted_iou": 0.55
+      }
+    },
+    "schema_version": "1.0"
+  },
+  "research_threshold_failures": [
+    "macro_iou=0.2854662754618686 is below required 0.3",
+    "macro_dice=0.3492266660377846 is below required 0.42"
+  ],
+  "runtime_integrity_ok": true,
+  "schema_version": "1.1"
+}
