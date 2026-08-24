@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Integrity-first Sentinel-2 geospatial machine-vision observatory">
+  <title>Geospatial Vision Observatory</title>
+  <link rel="stylesheet" href="/assets/dashboard.css">
+</head>
+<body>
+  <header>
+    <div><div class="eyebrow">Satellite machine vision</div><h1>Geospatial Vision Observatory</h1></div>
+    <div class="status" id="status" aria-live="polite">Loading system status…</div>
+  </header>
+  <main>
+    <section class="notice"><strong>Research boundary</strong><span>Operational previews are descriptive. Scientific land-cover claims require the aligned Sentinel-2 + WorldCover/Hansen benchmark.</span></section>
+    <div class="grid">
+      <section class="panel visual" id="visual"><div class="empty">Waiting for the first integrity-verified Sentinel-2 observation.<br><span>Run the worker once to ingest it.</span></div></section>
+      <aside class="panel">
+        <div class="section-title"><div><div class="eyebrow">Current observation</div><h2>Analysis portfolio</h2></div><span class="badge" id="model-mode">Baseline</span></div>
+        <div id="analysis" class="empty compact">No analysis yet.</div>
+      </aside>
+    </div>
+    <section class="panel provenance">
+      <div class="section-title"><div><div class="eyebrow">Reproducibility</div><h2>Provenance and integrity</h2></div></div>
+      <div class="cards" id="provenance"><div class="empty compact">No verified observation metadata yet.</div></div>
+    </section>
+    <section class="panel provenance">
+      <div class="section-title"><div><div class="eyebrow">Measured evidence</div><h2>Trained multispectral model</h2></div><span class="badge" id="evidence-status">Not loaded</span></div>
+      <div class="cards" id="model-evidence"><div class="empty compact">Run the training workflow to publish verified held-out metrics here.</div></div>
+    </section>
+    <footer>Operational imagery: Copernicus Sentinel-2 L2A indexed through Element 84 Earth Search. Reference labels: ESA WorldCover 2021; Hansen Global Forest Change v1.13 is retained as forestry context. Trained metrics are served only when their model/evidence hashes agree.</footer>
+  </main>
+  <script src="/assets/dashboard.js" defer></script>
+</body>
+</html>

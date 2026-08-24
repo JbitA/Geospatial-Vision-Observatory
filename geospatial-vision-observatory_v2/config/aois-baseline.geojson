@@ -1,0 +1,301 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              24.8,
+              60.1
+            ],
+            [
+              24.8,
+              60.35
+            ],
+            [
+              25.2,
+              60.35
+            ],
+            [
+              25.2,
+              60.1
+            ],
+            [
+              24.8,
+              60.1
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "helsinki_metro",
+      "properties": {
+        "geometry_id": "defe1b344a3321e68e64714954e275d2d5e4766789f0b48ae64e02b1776373e2",
+        "name": "Helsinki metropolitan urban-forest interface",
+        "purpose": "urban land-cover segmentation, green-space mapping, temporal change",
+        "role": "train"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              29.1,
+              62.55
+            ],
+            [
+              29.1,
+              62.95
+            ],
+            [
+              29.7,
+              62.95
+            ],
+            [
+              29.7,
+              62.55
+            ],
+            [
+              29.1,
+              62.55
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "north_karelia_forest",
+      "properties": {
+        "geometry_id": "9df03626ed362eb9571ae1abf6e1c64042173416ea1f96dbf55df8bdd9b4d2ec",
+        "name": "North Karelia managed forest landscape",
+        "purpose": "forest-cover segmentation and disturbance/loss benchmarking",
+        "role": "train"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              22.1,
+              60.35
+            ],
+            [
+              22.1,
+              60.58
+            ],
+            [
+              22.46,
+              60.58
+            ],
+            [
+              22.46,
+              60.35
+            ],
+            [
+              22.1,
+              60.35
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "turku_coast",
+      "properties": {
+        "geometry_id": "6a6343cce6ab4297ed8fb1e26a0ecb84924e19caa7406ea2bd903c4c6e7cca88",
+        "name": "Turku coastal urban-agricultural landscape",
+        "purpose": "urban, cropland, coastal-water and green-space segmentation",
+        "role": "train"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              25.25,
+              64.9
+            ],
+            [
+              25.25,
+              65.15
+            ],
+            [
+              25.7,
+              65.15
+            ],
+            [
+              25.7,
+              64.9
+            ],
+            [
+              25.25,
+              64.9
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "oulu_mixed",
+      "properties": {
+        "geometry_id": "4dcc0fcc9bad7e27953d2f44e99971a9c53ec989b7d3cf97dcc30013c88c0fca",
+        "name": "Oulu boreal urban-wetland landscape",
+        "purpose": "boreal forest, built-up, wetland and water segmentation",
+        "role": "train"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              23.55,
+              61.4
+            ],
+            [
+              23.55,
+              61.62
+            ],
+            [
+              23.95,
+              61.62
+            ],
+            [
+              23.95,
+              61.4
+            ],
+            [
+              23.55,
+              61.4
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "tampere_growth",
+      "properties": {
+        "geometry_id": "8ef66aa5d8de7a1427b7b9c919210ad5b7ae3316c2e11863db8422caacb53973",
+        "name": "Tampere urban and peri-urban landscape",
+        "purpose": "built-up segmentation and urban expansion experiments",
+        "role": "validation"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              25.55,
+              62.12
+            ],
+            [
+              25.55,
+              62.38
+            ],
+            [
+              25.95,
+              62.38
+            ],
+            [
+              25.95,
+              62.12
+            ],
+            [
+              25.55,
+              62.12
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "jyvaskyla_validation",
+      "properties": {
+        "geometry_id": "90fd40fe7a287152fe770df949f8ed4eb6cb17008f0d8703564e0d2a6e4b00ea",
+        "name": "Jyv\u00e4skyl\u00e4 inland validation landscape",
+        "purpose": "spatially isolated validation across forest, urban and inland-water classes",
+        "role": "validation"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              18.04,
+              59.2
+            ],
+            [
+              18.04,
+              59.47
+            ],
+            [
+              18.36,
+              59.47
+            ],
+            [
+              18.36,
+              59.2
+            ],
+            [
+              18.04,
+              59.2
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "stockholm_external",
+      "properties": {
+        "geometry_id": "034aa8375be23dbebc199827e9d27fe987132d8bb7967539fd3da4c0bf6a6b19",
+        "name": "Stockholm external urban-forest holdout",
+        "purpose": "geographically external land-cover generalization and urban-water evaluation",
+        "role": "external_observed"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              24.55,
+              59.31
+            ],
+            [
+              24.55,
+              59.55
+            ],
+            [
+              24.96,
+              59.55
+            ],
+            [
+              24.96,
+              59.31
+            ],
+            [
+              24.55,
+              59.31
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "tallinn_external",
+      "properties": {
+        "geometry_id": "cd6829dcbadbfb3f9a5b9b237d415d5f8abc43b39211a0725ac34bf076566072",
+        "name": "Tallinn external coastal urban holdout",
+        "purpose": "geographically external built-up, vegetation, wetland and coastal evaluation",
+        "role": "external_observed"
+      },
+      "type": "Feature"
+    }
+  ],
+  "type": "FeatureCollection"
+}

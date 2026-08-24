@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/gvo/schemas/processing-cell.schema.json",
+  "title": "GVO processing-cell manifest",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version", "dataset_layout", "run_id", "recipe_id", "execution_mode",
+    "source_selection_id", "aoi", "cell", "sentinel2", "worldcover", "hansen", "integrity"
+  ],
+  "properties": {
+    "schema_version": {"const": 6},
+    "dataset_layout": {"const": "processing_cell_v2"},
+    "run_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "recipe_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "execution_mode": {"enum": ["collection_resumable", "standalone_nonresumable"]},
+    "source_selection_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "aoi": {
+      "type": "object",
+      "required": ["key", "geometry_id", "role"],
+      "properties": {
+        "key": {"type": "string"},
+        "geometry_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "role": {"enum": ["train", "validation", "external_unobserved", "external_observed", "inference_only"]}
+      }
+    },
+    "cell": {
+      "type": "object",
+      "required": ["cell_id", "core_bounds_m", "halo_bounds_m", "exact_geometry", "working_crs", "working_crs_id", "resolution_m", "cell_pixels", "halo_pixels"],
+      "properties": {
+        "cell_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "working_crs_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "resolution_m": {"type": "number", "exclusiveMinimum": 0},
+        "cell_pixels": {"type": "integer", "minimum": 64},
+        "halo_pixels": {"type": "integer", "minimum": 0},
+        "exact_geometry": {"type": "object"}
+      }
+    },
+    "sentinel2": {
+      "type": "object",
+      "required": ["item_ids", "band_sources", "indices"],
+      "properties": {
+        "item_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "worldcover": {
+      "type": "object",
+      "required": ["sources", "class_fractions"],
+      "properties": {
+        "sources": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "hansen": {
+      "type": "object",
+      "required": ["treecover2000_sources", "lossyear_sources"],
+      "properties": {
+        "treecover2000_sources": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true},
+        "lossyear_sources": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "required": ["outputs"],
+      "properties": {
+        "outputs": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["sha256", "bytes"],
+            "properties": {
+              "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+              "bytes": {"type": "integer", "minimum": 0}
+            }
+          }
+        }
+      }
+    }
+  }
+}

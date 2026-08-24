@@ -1,0 +1,34 @@
+name: Bug report
+description: Report a reproducible software defect
+title: "[bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not disclose security vulnerabilities here; use GitHub Security Advisories instead."
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the observed behavior and expected behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal reproduction
+      description: Include commands, configuration, and relevant non-secret logs.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Python version, CPU/GPU, and container/runtime details when relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: integrity
+    attributes:
+      label: Data/model integrity context
+      description: Relevant AOI, manifest, bundle, or report hashes if this concerns the scientific pipeline.

@@ -1,0 +1,22 @@
+schema_version: "1.0"
+dataset_policy:
+  temporal_window: ["2021-05-01", "2021-09-30"]
+  max_cloud_percent: 15.0
+  cloud_quality_basis: aoi_scl_obscured_percent
+  max_pixels: 768
+  minimum_validation_seeds: 3
+research_showcase_gates:
+  minimum:
+    macro_iou: 0.30
+    weighted_iou: 0.55
+    macro_dice: 0.42
+  maximum:
+    ece: 0.25
+  class_iou_minimum:
+    tree_cover: 0.55
+    built_up: 0.20
+notes:
+  - The 15% data-quality ceiling is evaluated from AOI-scoped Sentinel SCL obscured pixels; scene-wide STAC cloud cover is only a candidate-ranking signal.
+  - These gates prevent publishing a trivially non-functional model as a successful showcase.
+  - Thresholds are research-showcase criteria, not claims of operational or regulatory fitness.
+  - Production use requires independent labels, additional geography/season validation, security review and human scientific approval.

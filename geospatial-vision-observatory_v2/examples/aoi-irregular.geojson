@@ -1,0 +1,13 @@
+{
+  "type": "Feature",
+  "id": "helsinki-irregular-demo",
+  "properties": {
+    "name": "Helsinki irregular AOI demo",
+    "role": "inference_only",
+    "purpose": "AOI v2 planning and exact-geometry demonstration"
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[[24.86,60.16],[25.02,60.15],[25.08,60.23],[24.98,60.30],[24.84,60.25],[24.86,60.16]]]
+  }
+}

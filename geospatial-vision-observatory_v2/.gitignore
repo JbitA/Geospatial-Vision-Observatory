@@ -1,0 +1,22 @@
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.pyc
+*.db
+data/
+dist/
+build/
+*.egg-info/
+
+# Keep trained showcase evidence small and reviewable; exclude large rasters.
+reports/landcover/*.tif
+reports/landcover/*.npz
+models/research/
+.showcase/
+
+reports/release-validation.json

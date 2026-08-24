@@ -1,0 +1,26 @@
+name: Research or model proposal
+description: Propose an evidence-backed scientific or ML improvement
+title: "[research] "
+labels: [research]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Research question
+      description: State the hypothesis or capability being proposed.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evaluation design
+      description: Explain data provenance, split isolation, metrics, baselines, and how test leakage will be prevented.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Engineering and security impact
+      description: Dependencies, runtime cost, attack surface, integration changes, and maintenance burden.
+    validations:
+      required: true

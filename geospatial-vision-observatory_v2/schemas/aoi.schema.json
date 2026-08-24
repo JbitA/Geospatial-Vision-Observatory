@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/gvo/schemas/aoi.schema.json",
+  "title": "GVO AOI v2 document",
+  "oneOf": [
+    {"$ref": "#/$defs/feature"},
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "features"],
+      "properties": {
+        "type": {"const": "FeatureCollection"},
+        "features": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 10000,
+          "items": {"$ref": "#/$defs/feature"}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$"
+    },
+    "position": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [
+        {"type": "number", "minimum": -180, "maximum": 180},
+        {"type": "number", "minimum": -90, "maximum": 90}
+      ]
+    },
+    "linearRing": {
+      "type": "array",
+      "minItems": 4,
+      "items": {"$ref": "#/$defs/position"}
+    },
+    "polygon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {"const": "Polygon"},
+        "coordinates": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/linearRing"}
+        }
+      }
+    },
+    "multiPolygon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {"const": "MultiPolygon"},
+        "coordinates": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"$ref": "#/$defs/linearRing"}
+          }
+        }
+      }
+    },
+    "properties": {
+      "type": "object",
+      "required": ["role"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "name": {"type": "string", "minLength": 1, "maxLength": 256},
+        "purpose": {"type": "string", "maxLength": 1000},
+        "role": {
+          "enum": ["train", "validation", "external_unobserved", "external_observed", "inference_only"]
+        }
+      },
+      "additionalProperties": true
+    },
+    "feature": {
+      "type": "object",
+      "required": ["type", "geometry", "properties"],
+      "properties": {
+        "type": {"const": "Feature"},
+        "id": {"$ref": "#/$defs/id"},
+        "geometry": {
+          "oneOf": [
+            {"$ref": "#/$defs/polygon"},
+            {"$ref": "#/$defs/multiPolygon"}
+          ]
+        },
+        "properties": {"$ref": "#/$defs/properties"}
+      },
+      "anyOf": [
+        {"required": ["id"]},
+        {
+          "properties": {
+            "properties": {"required": ["id"]}
+          }
+        }
+      ],
+      "additionalProperties": true
+    }
+  }
+}

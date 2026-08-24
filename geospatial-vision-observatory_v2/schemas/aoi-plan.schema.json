@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/gvo/schemas/aoi-plan.schema.json",
+  "title": "GVO deterministic AOI processing plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "recipe", "plan_id", "grid_contract", "aois"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "recipe": {"type": "string", "minLength": 1, "maxLength": 128},
+    "plan_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "grid_contract": {"$ref": "#/$defs/gridParameters"},
+    "aois": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/plannedAoi"}
+    }
+  },
+  "$defs": {
+    "gridParameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resolution_m", "cell_pixels", "halo_pixels"],
+      "properties": {
+        "resolution_m": {"type": "number", "minimum": 1, "maximum": 1000},
+        "cell_pixels": {"type": "integer", "minimum": 64, "maximum": 8192},
+        "halo_pixels": {"type": "integer", "minimum": 0, "maximum": 2048}
+      }
+    },
+    "tileSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["worldcover", "hansen"],
+      "properties": {
+        "worldcover": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string"},
+          "uniqueItems": true
+        },
+        "hansen": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string"},
+          "uniqueItems": true
+        }
+      }
+    },
+    "bounds": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {"type": "number"}
+    },
+    "processingCell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cell_id",
+        "row",
+        "column",
+        "core_bounds_m",
+        "halo_bounds_m",
+        "wgs84_bbox",
+        "exact_geometry",
+        "coverage_fraction",
+        "reference_tiles"
+      ],
+      "properties": {
+        "cell_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "row": {"type": "integer"},
+        "column": {"type": "integer"},
+        "core_bounds_m": {"$ref": "#/$defs/bounds"},
+        "halo_bounds_m": {"$ref": "#/$defs/bounds"},
+        "wgs84_bbox": {"$ref": "#/$defs/bounds"},
+        "exact_geometry": {"type": "object"},
+        "coverage_fraction": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+        "reference_tiles": {"$ref": "#/$defs/tileSet"}
+      }
+    },
+    "processingGrid": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "working_crs",
+        "resolution_m",
+        "cell_pixels",
+        "halo_pixels",
+        "cell_size_m",
+        "cells"
+      ],
+      "properties": {
+        "working_crs": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["authority", "definition", "strategy", "crs_id"],
+          "properties": {
+            "authority": {"type": ["string", "null"]},
+            "definition": {"type": "string", "minLength": 1},
+            "strategy": {
+              "enum": ["utm_single_zone", "laea_aoi_centered", "polar_north", "polar_south"]
+            },
+            "crs_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+          }
+        },
+        "resolution_m": {"type": "number", "minimum": 1, "maximum": 1000},
+        "cell_pixels": {"type": "integer", "minimum": 64, "maximum": 8192},
+        "halo_pixels": {"type": "integer", "minimum": 0, "maximum": 2048},
+        "cell_size_m": {"type": "number", "exclusiveMinimum": 0},
+        "cells": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/processingCell"}
+        }
+      }
+    },
+    "plannedAoi": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "aoi_id",
+        "geometry_id",
+        "role",
+        "bbox",
+        "reference_tiles",
+        "processing_grid",
+        "legacy_executable",
+        "blockers"
+      ],
+      "properties": {
+        "aoi_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$"},
+        "geometry_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "role": {
+          "enum": [
+            "train",
+            "validation",
+            "external_unobserved",
+            "external_observed",
+            "inference_only"
+          ]
+        },
+        "bbox": {"$ref": "#/$defs/bounds"},
+        "reference_tiles": {"$ref": "#/$defs/tileSet"},
+        "processing_grid": {"$ref": "#/$defs/processingGrid"},
+        "legacy_executable": {"type": "boolean"},
+        "blockers": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

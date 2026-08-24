@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/gvo/schemas/processing-cell-collection.schema.json",
+  "title": "GVO resumable processing-cell collection manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "dataset_layout", "pipeline_version", "run_id", "request_id",
+    "resolved_window", "aoi", "processing_grid", "grid_signature", "cells", "execution",
+    "scientific_unit", "note"
+  ],
+  "properties": {
+    "schema_version": {"const": 2},
+    "dataset_layout": {"const": "processing_cell_collection_v2"},
+    "pipeline_version": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "request_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "grid_signature": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "resolved_window": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {
+        "start": {"type": "string", "format": "date-time"},
+        "end": {"type": "string", "format": "date-time"}
+      }
+    },
+    "aoi": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "name", "geometry_id", "role", "geometry"],
+      "properties": {
+        "key": {"type": "string"},
+        "name": {"type": "string"},
+        "geometry_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "role": {"enum": ["train", "validation", "external_unobserved", "external_observed", "inference_only"]},
+        "geometry": {"type": "object"}
+      }
+    },
+    "processing_grid": {"type": "object"},
+    "cells": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["cell_id", "recipe_id", "disposition", "manifest", "manifest_sha256", "source_selection_id"],
+        "properties": {
+          "cell_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "recipe_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "disposition": {"enum": ["built", "reused"]},
+          "manifest": {"type": "string", "pattern": "^runs/[0-9a-f]{64}/cells/[0-9a-f]{64}/manifest\\.json$"},
+          "manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "source_selection_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total_cells", "built_cells", "reused_cells", "force_rebuild"],
+      "properties": {
+        "total_cells": {"type": "integer", "minimum": 1},
+        "built_cells": {"type": "integer", "minimum": 0},
+        "reused_cells": {"type": "integer", "minimum": 0},
+        "force_rebuild": {"type": "boolean"}
+      }
+    },
+    "scientific_unit": {"const": "AOI"},
+    "note": {"type": "string", "minLength": 1}
+  }
+}

@@ -1,0 +1,133 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  windows-quality:
+    name: Windows quality
+    runs-on: windows-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v6.0.2
+      - uses: actions/setup-python@v6.2.0
+        with:
+          python-version: "3.14"
+          check-latest: true
+          cache: pip
+      - name: Install development and ML dependencies
+        shell: pwsh
+        run: python -m pip install --prefer-binary -e ".[dev,ml]"
+      - name: Static analysis
+        shell: pwsh
+        run: |
+          python -m ruff check .
+          python -m ruff format --check .
+          python -m mypy src
+      - name: Unit and offline integration tests
+        shell: pwsh
+        run: |
+          python -m coverage run --branch -m pytest -q
+          python -m coverage report --fail-under=80
+      - name: Syntax and release-structure checks
+        shell: pwsh
+        run: |
+          python -m compileall -q src scripts tests
+          node --check src/geo_vision/dashboard.js
+          python scripts/validate_release.py --allow-untrained --skip-tests
+      - name: Dependency consistency and vulnerability audit
+        shell: pwsh
+        run: |
+          python -m pip check
+          python -m pip_audit
+
+  windows-package:
+    name: Windows package
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6.0.2
+      - uses: actions/setup-python@v6.2.0
+        with:
+          python-version: "3.14"
+          check-latest: true
+          cache: pip
+      - name: Build distribution
+        shell: pwsh
+        run: |
+          python -m pip install build
+          python -m build
+          python scripts/check_distribution.py
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: python-distributions-windows
+          path: dist/
+          if-no-files-found: error
+
+  container:
+    name: Optional Docker Desktop image parity
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v6.0.2
+      - name: Validate Compose model
+        run: |
+          cp .env.example .env
+          docker compose config --quiet
+      - uses: docker/setup-buildx-action@v4.2.0
+      - uses: docker/build-push-action@v7.3.0
+        with:
+          context: .
+          load: true
+          tags: geospatial-vision:test
+      - uses: aquasecurity/trivy-action@0.36.0
+        with:
+          image-ref: geospatial-vision:test
+          format: sarif
+          output: trivy.sarif
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+      - uses: github/codeql-action/upload-sarif@v4.37.3
+        with:
+          sarif_file: trivy.sarif
+
+  train-showcase-windows:
+    name: Manual real-data Windows showcase
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: windows-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v6.0.2
+      - uses: actions/setup-python@v6.2.0
+        with:
+          python-version: "3.14"
+          check-latest: true
+          cache: pip
+      - name: Execute Windows real-data workflow
+        shell: pwsh
+        run: .\scripts\showcase.ps1 -Device cpu
+      - name: Upload measured showcase evidence
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: trained-geospatial-showcase-windows
+          path: |
+            models/landcover/
+            reports/landcover/
+            reports/environment-freeze.txt
+            reports/sbom.cdx.json
+            docs/assets/
+            docs/RESULTS.md
+            README.md
+          if-no-files-found: error

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/gvo/schemas/processing-run-state.schema.json",
+  "title": "GVO resumable processing run state",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version", "status", "pipeline_version", "request_id", "request", "run_id",
+    "aoi", "grid_signature", "resolved_start", "resolved_end", "started_at", "updated_at",
+    "total_cells", "completed_cells", "built_cells", "reused_cells"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "status": {"enum": ["running", "complete"]},
+    "pipeline_version": {"type": "string", "minLength": 1},
+    "request_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "run_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "grid_signature": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "resolved_start": {"type": "string", "format": "date-time"},
+    "resolved_end": {"type": "string", "format": "date-time"},
+    "started_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "total_cells": {"type": "integer", "minimum": 1},
+    "completed_cells": {"type": "integer", "minimum": 0},
+    "built_cells": {"type": "integer", "minimum": 0},
+    "reused_cells": {"type": "integer", "minimum": 0},
+    "request": {"type": "object"},
+    "aoi": {"type": "object"}
+  }
+}
